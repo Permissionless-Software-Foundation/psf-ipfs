@@ -16,6 +16,7 @@ import SendTokens from './src/commands/send-tokens.js'
 import WalletSweep from './src/commands/wallet-sweep.js'
 import MsgSign from './src/commands/msg-sign.js'
 import MsgVerify from './src/commands/msg-verify.js'
+import IPFSStatus from './src/commands/ipfs-status.js'
 
 // Instantiate the subcommands
 const walletCreate = new WalletCreate()
@@ -27,6 +28,7 @@ const sendTokens = new SendTokens()
 const walletSweep = new WalletSweep()
 const msgSign = new MsgSign()
 const msgVerify = new MsgVerify()
+const ipfsStatus = new IPFSStatus()
 
 const program = new Command()
 
@@ -90,5 +92,9 @@ program.command('msg-verify')
   .option('-m, --msg <string>', 'Cleartext message that was signed')
   .option('-a, --addr <string>', 'BCH address generated from private key that signed the message')
   .action(msgVerify.run)
+
+program.command('ipfs-status')
+  .description('Get ipfs node status')
+  .action(ipfsStatus.run)
 
 program.parseAsync(process.argv)
