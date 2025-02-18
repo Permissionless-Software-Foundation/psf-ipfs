@@ -17,6 +17,7 @@ import WalletSweep from './src/commands/wallet-sweep.js'
 import MsgSign from './src/commands/msg-sign.js'
 import MsgVerify from './src/commands/msg-verify.js'
 import IPFSStatus from './src/commands/ipfs-status.js'
+import IPFSPeers from './src/commands/ipfs-peers.js'
 
 // Instantiate the subcommands
 const walletCreate = new WalletCreate()
@@ -29,7 +30,7 @@ const walletSweep = new WalletSweep()
 const msgSign = new MsgSign()
 const msgVerify = new MsgVerify()
 const ipfsStatus = new IPFSStatus()
-
+const ipfsPeers = new IPFSPeers()
 const program = new Command()
 
 program
@@ -96,5 +97,10 @@ program.command('msg-verify')
 program.command('ipfs-status')
   .description('Get ipfs node status')
   .action(ipfsStatus.run)
+
+program.command('ipfs-peers')
+  .description('Get ipfs node peers')
+  .option('-a, --all', 'Display all data about peers')
+  .action(ipfsPeers.run)
 
 program.parseAsync(process.argv)
