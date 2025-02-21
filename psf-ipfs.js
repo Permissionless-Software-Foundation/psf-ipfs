@@ -18,6 +18,7 @@ import MsgSign from './src/commands/msg-sign.js'
 import MsgVerify from './src/commands/msg-verify.js'
 import IPFSStatus from './src/commands/ipfs-status.js'
 import IPFSPeers from './src/commands/ipfs-peers.js'
+import IPFSRelays from './src/commands/ipfs-relays.js'
 
 // Instantiate the subcommands
 const walletCreate = new WalletCreate()
@@ -31,6 +32,7 @@ const msgSign = new MsgSign()
 const msgVerify = new MsgVerify()
 const ipfsStatus = new IPFSStatus()
 const ipfsPeers = new IPFSPeers()
+const ipfsRelays = new IPFSRelays()
 const program = new Command()
 
 program
@@ -102,5 +104,9 @@ program.command('ipfs-peers')
   .description('Get ipfs node peers')
   .option('-a, --all', 'Display all data about peers')
   .action(ipfsPeers.run)
+
+program.command('ipfs-relays')
+  .description('Query the state of circuit relays')
+  .action(ipfsRelays.run)
 
 program.parseAsync(process.argv)
