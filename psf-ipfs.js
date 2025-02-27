@@ -21,6 +21,7 @@ import IPFSPeers from './src/commands/ipfs-peers.js'
 import IPFSRelays from './src/commands/ipfs-relays.js'
 import IPFSConnect from './src/commands/ipfs-connect.js'
 import IPFSFileInfo from './src/commands/file-info.js'
+import WalletService from './src/commands/wallet-service.js'
 
 // Instantiate the subcommands
 const walletCreate = new WalletCreate()
@@ -37,6 +38,7 @@ const ipfsPeers = new IPFSPeers()
 const ipfsRelays = new IPFSRelays()
 const ipfsConnect = new IPFSConnect()
 const ipfsFileInfo = new IPFSFileInfo()
+const walletService = new WalletService()
 const program = new Command()
 
 program
@@ -123,5 +125,9 @@ program.command('file-info')
   .description('Get information about a file in IPFS')
   .option('-c, --cid <string>', 'CID of the file to get information about')
   .action(ipfsFileInfo.run)
+
+program.command('wallet-service')
+  .description('Get information about the wallet service providers')
+  .action(walletService.run)
 
 program.parseAsync(process.argv)
