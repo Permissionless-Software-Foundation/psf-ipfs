@@ -48,7 +48,7 @@ class IPFSFileInfo {
       const info = data.fileMetadata
       // If the metadata is not found, throw an error.
       if (!info || !info.cid) {
-        throw new Error(`CID : $${flags.cid} not found!`)
+        throw new Error(`CID ${flags.cid} not found!`)
       }
       return info
     } catch (err) {
