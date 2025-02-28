@@ -37,7 +37,14 @@ class IPFSFileInfo {
   async getInfo (flags) {
     try {
       const response = await this.axios.get(`${this.config.ipfsURL}/ipfs/file-info/${flags.cid}`)
+      // console.log('response: ', response)
+
       const { data } = response
+
+      if (!data.success) {
+        throw new Error(data.message)
+      }
+
       const info = data.fileMetadata
       // If the metadata is not found, throw an error.
       if (!info || !info.cid) {

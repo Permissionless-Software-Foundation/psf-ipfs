@@ -41,7 +41,7 @@ describe('#file-info', () => {
 
   describe('#getInfo', () => {
     it('should get file info', async () => {
-      sandbox.stub(uut.axios, 'get').resolves({ data: { fileMetadata: { cid: 'content id' } } })
+      sandbox.stub(uut.axios, 'get').resolves({ data: { success: true, fileMetadata: { cid: 'content id' } } })
 
       const result = await uut.getInfo({ cid: 'content id' })
 
@@ -68,6 +68,7 @@ describe('#file-info', () => {
         assert.include(error.message, 'Cannot read properties of undefined')
       }
     })
+
     it('should throw an error if the cid is not found!', async () => {
       try {
         await uut.getInfo({ data: { fileMetadata: {} } })
@@ -77,7 +78,20 @@ describe('#file-info', () => {
         assert.include(error.message, 'not found!')
       }
     })
+
+    it('should handle network disconnect', async () => {
+      sandbox.stub(uut.axios, 'get').resolves({ data: { success: false, message: 'timeout error' } })
+
+      try {
+        await uut.getInfo({ cid: 'content id' })
+
+        assert.fail('Unexpected code path')
+      } catch (err) {
+        assert.include(err.message, 'timeout error')
+      }
+    })
   })
+
   describe('#validateFlags()', () => {
     it('validateFlags() should return true if all arguments are supplied.', () => {
       const flags = {
