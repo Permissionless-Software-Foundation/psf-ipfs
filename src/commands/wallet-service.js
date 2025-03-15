@@ -51,7 +51,7 @@ class WalletService {
   //  Get IPFS Service Information
   async getIPFSServiceInfo () {
     try {
-      const response = await this.axios.get(`${this.config.ipfsURL}/ipfs/service`)
+      const response = await this.axios.get(`${this.config.restURL}/ipfs/service`)
       return response.data
     } catch (err) {
       console.log('Error in getIPFSServiceInfo()')
