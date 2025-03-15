@@ -1,6 +1,5 @@
 /*
-Query the state of the IPFS Circuit Relays this IPFS node is connected to.
-
+  Query the state of the IPFS Circuit Relays this IPFS node is connected to.
 */
 
 // Global npm libraries
@@ -32,7 +31,7 @@ class IPFSRelays {
   // Get Relays data from the IPFS node.
   async getRelays () {
     try {
-      const response = await this.axios.post(`${this.config.ipfsURL}/ipfs/relays`)
+      const response = await this.axios.post(`${this.config.restURL}/ipfs/relays`)
       return response.data.relays
     } catch (err) {
       console.log('Error in getRelays()', err)

@@ -36,7 +36,7 @@ class IPFSFileInfo {
   // Get information about a file in IPFS.
   async getInfo (flags) {
     try {
-      const response = await this.axios.get(`${this.config.ipfsURL}/ipfs/file-info/${flags.cid}`)
+      const response = await this.axios.get(`${this.config.restURL}/ipfs/file-info/${flags.cid}`)
       // console.log('response: ', response)
 
       const { data } = response
