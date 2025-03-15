@@ -1,6 +1,5 @@
 /*
-Query the state of the IPFS Circuit Relays this IPFS node is connected to.
-
+  Query the state of the IPFS Circuit Relays this IPFS node is connected to.
 */
 
 // Global npm libraries
