@@ -71,6 +71,7 @@ describe('#file-info', () => {
 
     it('should throw an error if the cid is not found!', async () => {
       try {
+        sandbox.stub(uut.axios, 'get').resolves({ data: { success: true, fileMetadata: {} } })
         await uut.getInfo({ data: { fileMetadata: {} } })
 
         assert.fail('Unexpected code path')
