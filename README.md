@@ -92,3 +92,15 @@ Download a file from the instance of [ipfs-file-pin-service](https://cashstack.i
 - Use `-c` to specify the [CID](https://docs.ipfs.tech/concepts/content-addressing/) of the file (required).
 
 
+#### Pin Claim
+
+Claim a pin on the PSF IPFS network.
+
+- `node psf-ipfs.js pin-claim -p be4b63156c93f58ed311d403d9f756deda9abbc81d0fef8fbe5d769538b4261c -t c71e2f2cdf8658d90c61ac6183b8ffeeb359779807b317386044705d8352f0f2 -f mutable-67ccefcca67097473e78ca10.json -a bitcoincash:qqs2wrahl6azn9qdyrmp9ygeejqvzr8ruv7e9m30fr -c bafybeied3zdwdiro7fqytyha2yfband4lwcrtozmf6shynylt3kexh26dq`
+
+##### Arguments
+- Use `-p` to specify the Proof of Burn transaction ID (required).
+- Use `-t` to specify the Claim transaction ID (required).
+- Use `-f` to specify the file name (required).
+- Use `-a` to specify the address to claim the pin to (required).
+- Use `-c` to specify the CID of the file (required).
