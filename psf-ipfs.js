@@ -23,7 +23,7 @@ import IPFSConnect from './src/commands/ipfs-connect.js'
 import IPFSFileInfo from './src/commands/file-info.js'
 import WalletService from './src/commands/wallet-service.js'
 import IPFSFileDownload from './src/commands/file-download.js'
-
+import IPFSPinClaim from './src/commands/pin-claim.js'
 // Instantiate the subcommands
 const walletCreate = new WalletCreate()
 const walletList = new WalletList()
@@ -42,6 +42,7 @@ const ipfsFileInfo = new IPFSFileInfo()
 const ipfsFileDownload = new IPFSFileDownload()
 const walletService = new WalletService()
 const program = new Command()
+const ipfsPinClaim = new IPFSPinClaim()
 
 program
   // Define the psf-bch-wallet app options
@@ -136,5 +137,14 @@ program.command('file-download')
 program.command('wallet-service')
   .description('Get information about the wallet service providers')
   .action(walletService.run)
+
+program.command('pin-claim')
+  .description('Trigger a pin claim for a given CID')
+  .option('-p, --proofOfBurnTxid <string>', 'Proof of Burn TxId (required)')
+  .option('-t, --claimTxid <string>', 'Claim TxId (required)')
+  .option('-f, --filename <string>', 'File Name (required)')
+  .option('-a, --address <string>', 'Address to claim the pin to (required)')
+  .option('-c, --cid <string>', 'CID of the file (required)')
+  .action(ipfsPinClaim.run)
 
 program.parseAsync(process.argv)
